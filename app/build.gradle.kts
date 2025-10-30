@@ -36,6 +36,13 @@ android {
     }
 }
 dependencies {
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    //room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
     //Compose
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.material)
