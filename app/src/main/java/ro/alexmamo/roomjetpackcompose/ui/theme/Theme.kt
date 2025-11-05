@@ -46,8 +46,10 @@ fun RoomJetpackComposeTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            // Hacer la status bar transparente para que el fondo verde se vea detrás
+            window.statusBarColor = android.graphics.Color.TRANSPARENT
+            // Configurar el texto de la status bar como oscuro (para contrastar con el fondo verde claro)
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
         }
     }
 
