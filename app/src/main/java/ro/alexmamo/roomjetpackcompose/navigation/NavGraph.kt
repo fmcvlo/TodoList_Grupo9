@@ -8,6 +8,9 @@ import androidx.navigation.toRoute
 import ro.alexmamo.roomjetpackcompose.domain.model.toBookDetails
 import ro.alexmamo.roomjetpackcompose.presentation.book_list.BookListScreen
 import ro.alexmamo.roomjetpackcompose.presentation.book_details.BookDetailsScreen
+import ro.alexmamo.roomjetpackcompose.presentation.home.HomeScreen
+import ro.alexmamo.roomjetpackcompose.presentation.profile.ProfileScreen
+import ro.alexmamo.roomjetpackcompose.presentation.settings.SettingsScreen
 
 @Composable
 fun NavGraph(
@@ -15,8 +18,11 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = BookListScreen
+        startDestination = HomeScreen
     ) {
+        composable<HomeScreen> {
+            HomeScreen()
+        }
         composable<BookListScreen> {
             BookListScreen(
                 navigateToBookDetailsScreen = { book ->
@@ -24,6 +30,12 @@ fun NavGraph(
                     navController.navigate(bookDetails)
                 }
             )
+        }
+        composable<ProfileScreen> {
+            ProfileScreen()
+        }
+        composable<SettingsScreen> {
+            SettingsScreen()
         }
         composable<BookDetails> { entry ->
             val bookDetails = entry.toRoute<BookDetails>()

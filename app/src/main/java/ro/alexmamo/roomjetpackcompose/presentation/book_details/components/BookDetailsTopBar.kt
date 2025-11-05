@@ -1,14 +1,16 @@
 package ro.alexmamo.roomjetpackcompose.presentation.book_details.components
 
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import ro.alexmamo.roomjetpackcompose.R
 import ro.alexmamo.roomjetpackcompose.components.ActionIconButton
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookDetailsTopBar(
     onArrowBackIconClick: () -> Unit
@@ -24,7 +26,7 @@ fun BookDetailsTopBar(
         navigationIcon = {
             ActionIconButton(
                 onActionIconButtonClick = onArrowBackIconClick,
-                imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
+                imageVector = Icons.Default.ArrowBack,
                 resourceId = R.string.navigate_back
             )
         }

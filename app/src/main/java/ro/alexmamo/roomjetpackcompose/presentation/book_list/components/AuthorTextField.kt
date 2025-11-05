@@ -1,7 +1,7 @@
 package ro.alexmamo.roomjetpackcompose.presentation.book_list.components
 
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

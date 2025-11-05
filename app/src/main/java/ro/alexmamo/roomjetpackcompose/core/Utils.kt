@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.makeText
-import androidx.compose.material.SnackbarHostState
+import androidx.compose.material3.SnackbarHostState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

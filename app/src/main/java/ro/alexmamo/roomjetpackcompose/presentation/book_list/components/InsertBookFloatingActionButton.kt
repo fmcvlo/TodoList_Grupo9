@@ -1,8 +1,7 @@
 package ro.alexmamo.roomjetpackcompose.presentation.book_list.components
 
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
@@ -14,7 +13,6 @@ fun InsertBookFloatingActionButton(
     onInsertBookFloatingActionButtonClick: () -> Unit
 ) {
     FloatingActionButton(
-        backgroundColor = MaterialTheme.colors.primary,
         onClick = onInsertBookFloatingActionButtonClick
     ) {
         Icon(

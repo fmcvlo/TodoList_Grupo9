@@ -7,6 +7,15 @@ import ro.alexmamo.roomjetpackcompose.domain.model.Book
 object BookListScreen
 
 @Serializable
+object HomeScreen
+
+@Serializable
+object ProfileScreen
+
+@Serializable
+object SettingsScreen
+
+@Serializable
 data class BookDetails(
     val id: Int,
     val title: String,
