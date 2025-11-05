@@ -45,7 +45,7 @@ dependencies {
     ksp(libs.room.compiler)
     //Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.compose.material)
+    //implementation(libs.compose.material)
     implementation(libs.compose.material.icons)
     //Navigation
     implementation(libs.navigation.compose)
