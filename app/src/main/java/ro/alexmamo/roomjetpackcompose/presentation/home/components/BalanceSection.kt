@@ -61,7 +61,7 @@ fun BalanceSection(
             modifier = Modifier
                 .width(1.dp)
                 .height(42.dp)
-                .background(Color.Gray.copy(alpha = 0.3f))
+                .background(Color.White)
         )
         
         Column {
