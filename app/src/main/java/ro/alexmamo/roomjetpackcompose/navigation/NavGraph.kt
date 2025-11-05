@@ -11,6 +11,9 @@ import ro.alexmamo.roomjetpackcompose.presentation.book_details.BookDetailsScree
 import ro.alexmamo.roomjetpackcompose.presentation.home.HomeScreen
 import ro.alexmamo.roomjetpackcompose.presentation.profile.ProfileScreen
 import ro.alexmamo.roomjetpackcompose.presentation.settings.SettingsScreen
+import ro.alexmamo.roomjetpackcompose.presentation.analytics.AnalyticsScreen
+import ro.alexmamo.roomjetpackcompose.presentation.swap.SwapScreen
+import ro.alexmamo.roomjetpackcompose.presentation.layers.LayersScreen
 
 @Composable
 fun NavGraph(
@@ -36,6 +39,15 @@ fun NavGraph(
         }
         composable<SettingsScreen> {
             SettingsScreen()
+        }
+        composable<AnalyticsScreen> {
+            AnalyticsScreen()
+        }
+        composable<SwapScreen> {
+            SwapScreen()
+        }
+        composable<LayersScreen> {
+            LayersScreen()
         }
         composable<BookDetails> { entry ->
             val bookDetails = entry.toRoute<BookDetails>()

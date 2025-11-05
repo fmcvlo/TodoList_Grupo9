@@ -1,51 +1,135 @@
 package ro.alexmamo.roomjetpackcompose.navigation
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.toRoute
+import ro.alexmamo.roomjetpackcompose.R
+import ro.alexmamo.roomjetpackcompose.presentation.analytics.AnalyticsScreen
+import ro.alexmamo.roomjetpackcompose.presentation.home.HomeScreen
+import ro.alexmamo.roomjetpackcompose.presentation.layers.LayersScreen
+import ro.alexmamo.roomjetpackcompose.presentation.profile.ProfileScreen
+import ro.alexmamo.roomjetpackcompose.presentation.swap.SwapScreen
+import ro.alexmamo.roomjetpackcompose.ui.theme.BottomNavActiveBackground
+import ro.alexmamo.roomjetpackcompose.ui.theme.BottomNavBackground
+import ro.alexmamo.roomjetpackcompose.ui.theme.BottomNavIconColor
+
+// Data class para items del bottom nav
+data class BottomNavItem(
+    val screen: Any,
+    val title: String,
+    val icon: Int,
+    val selectedIcon: Int,
+    val routeName: String
+)
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
+    // Lista de items usando los @Serializable objects
     val items = listOf(
-        Screen.Home to HomeScreen,
-        Screen.Profile to ProfileScreen,
-        Screen.Settings to SettingsScreen
+        BottomNavItem(
+            screen = HomeScreen,
+            title = "Inicio",
+            icon = R.drawable.home,
+            selectedIcon = R.drawable.home_selected,
+            routeName = "HomeScreen"
+        ),
+        BottomNavItem(
+            screen = AnalyticsScreen,
+            title = "Analytics",
+            icon = R.drawable.analysis,
+            selectedIcon = R.drawable.analysis_selected,
+            routeName = "AnalyticsScreen"
+        ),
+        BottomNavItem(
+            screen = SwapScreen,
+            title = "Swap",
+            icon = R.drawable.transaction,
+            selectedIcon = R.drawable.transaction_selected,
+            routeName = "SwapScreen"
+        ),
+        BottomNavItem(
+            screen = LayersScreen,
+            title = "Layers",
+            icon = R.drawable.category,
+            selectedIcon = R.drawable.category_selected,
+            routeName = "LayersScreen"
+        ),
+        BottomNavItem(
+            screen = ProfileScreen,
+            title = "Perfil",
+            icon = R.drawable.profile,
+            selectedIcon = R.drawable.profile_selected,
+            routeName = "ProfileScreen"
+        )
     )
 
-    NavigationBar {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
-        items.forEach { (screen, route) ->
-            val isSelected = try {
-                val currentRoute = navBackStackEntry?.toRoute<Any>()
-                currentRoute != null && currentRoute.javaClass == route.javaClass
-            } catch (e: Exception) {
-                false
-            }
-            
-            NavigationBarItem(
-                label = { Text(screen.title) },
-                icon = { Icon(screen.icon, contentDescription = screen.title) },
-                selected = isSelected,
-                onClick = {
-                    navController.navigate(route) {
-                        val startDestinationRoute = navController.graph.startDestinationRoute
-                        if (startDestinationRoute != null) {
-                            popUpTo(startDestinationRoute) {
-                                saveState = true
+    Box(
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.Center
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(topStart = 80.dp, topEnd = 80.dp))
+                .background(BottomNavBackground)
+                .padding(top = 36.dp, bottom = 41.dp, start = 30.dp, end = 30.dp),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            val iconSpacing = 33.dp
+
+            items.forEachIndexed { index, item ->
+                // Comparar usando el nombre de la ruta
+                val isSelected = currentRoute?.contains(item.routeName, ignoreCase = true) == true
+
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(
+                            if (isSelected) BottomNavActiveBackground else Color.Transparent
+                        )
+                        .clickable {
+                            navController.navigate(item.screen) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
                             }
                         }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
+                        .padding(horizontal = 1.dp, vertical = 8.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    val iconId = if (isSelected) item.selectedIcon else item.icon
+
+                    Icon(
+                        painter = painterResource(id = iconId),
+                        contentDescription = item.title,
+                        tint = BottomNavIconColor,
+                        modifier = Modifier.size(32.dp)
+                    )
                 }
-            )
+
+                if (index < items.lastIndex) {
+                    Spacer(modifier = Modifier.width(iconSpacing))
+                }
+            }
         }
     }
 }

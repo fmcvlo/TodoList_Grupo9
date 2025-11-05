@@ -9,3 +9,8 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
+
+// Bottom Navigation Colors
+val BottomNavBackground = Color(0xFFDFF7E2) // Light pastel green
+val BottomNavActiveBackground = Color(0xFF4ECDC4) // Vibrant teal-green
+val BottomNavIconColor = Color(0xFF093030) // Dark gray/black

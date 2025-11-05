@@ -16,6 +16,15 @@ object ProfileScreen
 object SettingsScreen
 
 @Serializable
+object AnalyticsScreen
+
+@Serializable
+object SwapScreen
+
+@Serializable
+object LayersScreen
+
+@Serializable
 data class BookDetails(
     val id: Int,
     val title: String,
