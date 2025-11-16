@@ -18,8 +18,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import ro.alexmamo.roomjetpackcompose.R
 import ro.alexmamo.roomjetpackcompose.ui.theme.BottomNavActiveBackground
-import ro.alexmamo.roomjetpackcompose.ui.theme.BottomNavBackground
 import ro.alexmamo.roomjetpackcompose.ui.theme.DarkGreen
+import ro.alexmamo.roomjetpackcompose.ui.theme.LightGreen
 // Data class para items del bottom nav
 data class BottomNavItem(
     val screen: Any,
@@ -66,14 +66,14 @@ fun BottomNavigationBar(navController: NavController) {
     val currentRoute = navBackStackEntry?.destination?.route
 
     Box(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().background(Color.White),
         contentAlignment = Alignment.Center
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(topStart = 80.dp, topEnd = 80.dp))
-                .background(BottomNavBackground)
+                .background(LightGreen)
                 .padding(top = 36.dp, bottom = 41.dp, start = 30.dp, end = 30.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
