@@ -42,6 +42,8 @@ dependencies {
     //room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
     ksp(libs.room.compiler)
     //Compose
     implementation(platform(libs.compose.bom))
@@ -61,6 +63,8 @@ dependencies {
     ksp(libs.room.compiler)
     //Serialization
     implementation(libs.serialization)
+    //Coil for image loading
+    implementation(libs.coil.compose)
     //Tests
     androidTestImplementation(libs.navigation.testing)
     androidTestImplementation(libs.hilt.android.testing)

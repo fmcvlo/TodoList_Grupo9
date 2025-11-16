@@ -17,61 +17,47 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import ro.alexmamo.roomjetpackcompose.R
-import ro.alexmamo.roomjetpackcompose.presentation.analytics.AnalyticsScreen
-import ro.alexmamo.roomjetpackcompose.presentation.home.HomeScreen
-import ro.alexmamo.roomjetpackcompose.presentation.layers.LayersScreen
-import ro.alexmamo.roomjetpackcompose.presentation.profile.ProfileScreen
-import ro.alexmamo.roomjetpackcompose.presentation.swap.SwapScreen
 import ro.alexmamo.roomjetpackcompose.ui.theme.BottomNavActiveBackground
 import ro.alexmamo.roomjetpackcompose.ui.theme.BottomNavBackground
-import ro.alexmamo.roomjetpackcompose.ui.theme.BottomNavIconColor
-
+import ro.alexmamo.roomjetpackcompose.ui.theme.DarkGreen
 // Data class para items del bottom nav
 data class BottomNavItem(
     val screen: Any,
     val title: String,
     val icon: Int,
-    val selectedIcon: Int,
     val routeName: String
 )
-
 @Composable
 fun BottomNavigationBar(navController: NavController) {
-    // Lista de items usando los @Serializable objects
     val items = listOf(
         BottomNavItem(
             screen = HomeScreen,
             title = "Inicio",
             icon = R.drawable.home,
-            selectedIcon = R.drawable.home_selected,
             routeName = "HomeScreen"
         ),
         BottomNavItem(
             screen = AnalyticsScreen,
             title = "Analytics",
             icon = R.drawable.analysis,
-            selectedIcon = R.drawable.analysis_selected,
             routeName = "AnalyticsScreen"
         ),
         BottomNavItem(
             screen = SwapScreen,
             title = "Swap",
             icon = R.drawable.transaction,
-            selectedIcon = R.drawable.transaction_selected,
             routeName = "SwapScreen"
         ),
         BottomNavItem(
             screen = LayersScreen,
             title = "Layers",
             icon = R.drawable.category,
-            selectedIcon = R.drawable.category_selected,
             routeName = "LayersScreen"
         ),
         BottomNavItem(
             screen = ProfileScreen,
             title = "Perfil",
             icon = R.drawable.profile,
-            selectedIcon = R.drawable.profile_selected,
             routeName = "ProfileScreen"
         )
     )
@@ -100,7 +86,7 @@ fun BottomNavigationBar(navController: NavController) {
 
                 Box(
                     modifier = Modifier
-                        .clip(RoundedCornerShape(12.dp))
+                        .clip(RoundedCornerShape(20.dp))
                         .background(
                             if (isSelected) BottomNavActiveBackground else Color.Transparent
                         )
@@ -113,17 +99,17 @@ fun BottomNavigationBar(navController: NavController) {
                                 restoreState = true
                             }
                         }
-                        .padding(horizontal = 1.dp, vertical = 8.dp),
+                        .padding(horizontal = 8.dp, vertical = 8.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    val iconId = if (isSelected) item.selectedIcon else item.icon
 
                     Icon(
-                        painter = painterResource(id = iconId),
+                        painter = painterResource(id = item.icon),
                         contentDescription = item.title,
-                        tint = BottomNavIconColor,
-                        modifier = Modifier.size(32.dp)
+                        tint = DarkGreen,
+                        modifier = Modifier.size(28.dp)
                     )
+
                 }
 
                 if (index < items.lastIndex) {
