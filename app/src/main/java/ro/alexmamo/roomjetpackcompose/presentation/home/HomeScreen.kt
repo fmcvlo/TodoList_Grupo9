@@ -18,7 +18,9 @@ import androidx.compose.ui.unit.dp
 import ro.alexmamo.roomjetpackcompose.presentation.home.components.*
 import ro.alexmamo.roomjetpackcompose.presentation.home.components.Period
 import ro.alexmamo.roomjetpackcompose.ui.theme.*
+import androidx.compose.ui.tooling.preview.Preview
 
+@Preview
 @Composable
 fun HomeScreen() {
     var selectedPeriod by remember { mutableStateOf(Period.Monthly) }
