@@ -31,9 +31,6 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
-    }
 }
 dependencies {
     // retrofit
@@ -42,14 +39,13 @@ dependencies {
     //room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-    implementation(libs.ui.tooling.preview)
-    debugImplementation(libs.ui.tooling)
     ksp(libs.room.compiler)
     //Compose
     implementation(platform(libs.compose.bom))
-    //implementation(libs.compose.material)
-    implementation(libs.compose.material3)
+    implementation(libs.material3)
     implementation(libs.compose.material.icons)
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
     //Navigation
     implementation(libs.navigation.compose)
     //Hilt Navigation Compose
@@ -57,10 +53,6 @@ dependencies {
     //Hilt
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
-    //Room
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    ksp(libs.room.compiler)
     //Serialization
     implementation(libs.serialization)
     //Coil for image loading

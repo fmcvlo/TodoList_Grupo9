@@ -25,6 +25,15 @@ object SwapScreen
 object LayersScreen
 
 @Serializable
+object LaunchScreen
+
+@Serializable
+object LoginScreen
+
+@Serializable
+object SignUpScreen
+
+@Serializable
 data class BookDetails(
     val id: Int,
     val title: String,

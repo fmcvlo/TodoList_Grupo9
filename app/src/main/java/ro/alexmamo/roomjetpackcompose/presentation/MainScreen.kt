@@ -11,7 +11,7 @@ import ro.alexmamo.roomjetpackcompose.navigation.BottomNavigationBar
 import ro.alexmamo.roomjetpackcompose.navigation.NavGraph
 
 @Composable
-fun MainScreen() {
+fun AuthenticatedScreen() {
     val navController = rememberNavController()
 
     Scaffold(

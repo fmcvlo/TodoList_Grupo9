@@ -32,7 +32,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
@@ -47,9 +46,12 @@ import ro.alexmamo.roomjetpackcompose.ui.theme.MainGreen
 import ro.alexmamo.roomjetpackcompose.ui.theme.PoppinsFontFamily
 import ro.alexmamo.roomjetpackcompose.ui.theme.LightCardBackground
 
-@Preview
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    onLoginSuccess: () -> Unit = {},
+    onNavigateToSignUp: () -> Unit = {},
+    onNavigateToForgotPassword: () -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -107,19 +109,21 @@ fun LoginScreen() {
                 horizontalAlignment = Alignment.CenterHorizontally) {
                 Button(
                     text = "Log In",
-                    onClick = {},
+                    onClick = {
+                        // TODO: Implementar lógica de autenticación
+                        // Por ahora, navegar directamente a la pantalla autenticada
+                        onLoginSuccess()
+                    },
                     enabled = true,
                     style = "primary"
                 )
                 ClickableText(
                     text = "Forgot Password?",
-                    onClick = {
-                        // TODO: Navigate to forgot password screen
-                    }
+                    onClick = onNavigateToForgotPassword
                 )
                 Button(
-                    text = "Sing Up",
-                    onClick = {},
+                    text = "Sign Up",
+                    onClick = onNavigateToSignUp,
                     enabled = true,
                     style = "secondary"
                 )
@@ -212,9 +216,7 @@ fun LoginScreen() {
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable {
-                                // TODO: Navigate to sign up screen
-                            }
+                            .clickable(onClick = onNavigateToSignUp)
                     )
                 }
             }
