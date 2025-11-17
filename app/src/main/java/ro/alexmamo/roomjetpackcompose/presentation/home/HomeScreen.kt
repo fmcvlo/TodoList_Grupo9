@@ -25,7 +25,6 @@ import androidx.compose.ui.tooling.preview.Preview
 fun HomeScreen() {
     var selectedPeriod by remember { mutableStateOf(Period.Monthly) }
 
-    // Sample transactions data
     val transactions = remember {
         listOf(
             Transaction(
@@ -60,13 +59,10 @@ fun HomeScreen() {
             .fillMaxSize()
             .background(MainGreen)
     ) {
-        // Greeting section
         GreetingSection()
 
-        // Balance section
         BalanceSection()
 
-        // Savings progress bar
         SavingsProgressBar(
             percentage = 30,
             goalAmount = "$20,000.00",
@@ -84,12 +80,10 @@ fun HomeScreen() {
                     .fillMaxSize()
                     .padding(start = 24.dp, top = 24.dp, end = 24.dp)
             ) {
-                // Weekly summary section
                 WeeklySummarySection()
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                // Period switch
                 PeriodSwitch(
                     selectedPeriod = selectedPeriod,
                     onPeriodSelected = { selectedPeriod = it }
@@ -97,7 +91,6 @@ fun HomeScreen() {
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                // Transactions list
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(bottom = 100.dp)

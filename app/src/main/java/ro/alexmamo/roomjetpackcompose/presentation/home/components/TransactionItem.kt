@@ -2,12 +2,10 @@ package ro.alexmamo.roomjetpackcompose.presentation.home.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -30,24 +28,19 @@ fun TransactionItem(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 37.dp, vertical = 8.dp),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+            .height(IntrinsicSize.Min)
+            .padding(vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        // Icon
-        TransactionIcon(
-         transaction.category,
-        )
-        
-        // Transaction details
-        Column(
-            modifier = Modifier.weight(1f)
+        Row(
+            modifier = Modifier.weight(2f),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
+            TransactionIcon(transaction.category)
+
+            Spacer(modifier = Modifier.width(12.dp))
+
+            Column {
                 Text(
                     text = transaction.title,
                     fontFamily = PoppinsFontFamily,
@@ -55,29 +48,7 @@ fun TransactionItem(
                     fontSize = 15.sp,
                     color = DarkText
                 )
-                Text(
-                    text = transaction.amount,
-                    fontFamily = PoppinsFontFamily,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 15.sp,
-                    color = if (transaction.isExpense) OceanBlue else DarkText
-                )
-            }
-            
-            Spacer(modifier = Modifier.height(4.dp))
-            
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = transaction.category,
-                    fontFamily = PoppinsFontFamily,
-                    fontWeight = FontWeight.Light,
-                    fontSize = 13.sp,
-                    color = DarkText
-                )
+                Spacer(modifier = Modifier.height(1.dp))
                 Text(
                     text = transaction.date,
                     fontFamily = PoppinsFontFamily,
@@ -87,8 +58,52 @@ fun TransactionItem(
                 )
             }
         }
+
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(1.dp)
+                .background(MainGreen)
+        )
+
+        Box(
+            modifier = Modifier
+                .weight(1f),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = transaction.category.replaceFirstChar { it.uppercase() },
+                fontFamily = PoppinsFontFamily,
+                fontWeight = FontWeight.Light,
+                fontSize = 13.sp,
+                color = DarkText
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxHeight()
+                .width(1.dp)
+                .background(MainGreen)
+        )
+
+        Box(
+            modifier = Modifier
+                .weight(1f),
+            contentAlignment = Alignment.CenterEnd
+        ) {
+            Text(
+                text = transaction.amount,
+                fontFamily = PoppinsFontFamily,
+                fontWeight = FontWeight.Medium,
+                fontSize = 15.sp,
+                color = if (!transaction.isExpense) DarkText else OceanBlue
+            )
+        }
     }
 }
+
+
 
 
 

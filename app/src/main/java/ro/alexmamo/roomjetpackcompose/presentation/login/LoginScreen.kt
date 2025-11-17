@@ -148,6 +148,7 @@ fun LoginScreen(
                         .fillMaxWidth()
                         .clickable {
                             // TODO: Handle fingerprint authentication
+                            onLoginSuccess()
                         }
                 )
                 Spacer(modifier = Modifier.height(20.dp))

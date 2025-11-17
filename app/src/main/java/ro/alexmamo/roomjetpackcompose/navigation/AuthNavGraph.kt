@@ -33,6 +33,7 @@ fun AuthNavGraph(
                 onForgotPasswordClick = {
                     // TODO: Navegar a ForgotPasswordScreen cuando se implemente
                 }
+
             )
         }
         composable<LoginScreen> {
