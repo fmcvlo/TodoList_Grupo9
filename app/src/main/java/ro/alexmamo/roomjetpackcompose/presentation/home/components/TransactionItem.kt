@@ -42,7 +42,7 @@ fun TransactionItem(
 
             Column {
                 Text(
-                    text = transaction.title,
+                    text = transaction.category,
                     fontFamily = PoppinsFontFamily,
                     fontWeight = FontWeight.Medium,
                     fontSize = 15.sp,
@@ -53,7 +53,7 @@ fun TransactionItem(
                     text = transaction.date,
                     fontFamily = PoppinsFontFamily,
                     fontWeight = FontWeight.SemiBold,
-                    fontSize = 12.sp,
+                    fontSize = 10.sp,
                     color = OceanBlue
                 )
             }
@@ -75,7 +75,7 @@ fun TransactionItem(
                 text = transaction.category.replaceFirstChar { it.uppercase() },
                 fontFamily = PoppinsFontFamily,
                 fontWeight = FontWeight.Light,
-                fontSize = 13.sp,
+                fontSize = 12.sp,
                 color = DarkText
             )
         }
@@ -96,7 +96,7 @@ fun TransactionItem(
                 text = transaction.amount,
                 fontFamily = PoppinsFontFamily,
                 fontWeight = FontWeight.Medium,
-                fontSize = 15.sp,
+                fontSize = 13.sp,
                 color = if (!transaction.isExpense) DarkText else OceanBlue
             )
         }

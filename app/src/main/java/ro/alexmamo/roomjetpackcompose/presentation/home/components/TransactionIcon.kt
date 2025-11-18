@@ -27,13 +27,14 @@ fun TransactionIcon(
         "gifts" -> R.drawable.gifts
         "medicine" -> R.drawable.medicine
         "entertainment" -> R.drawable.entretainment
-        "saving" -> R.drawable.saving
-        else -> R.drawable.food
+        "savings" -> R.drawable.saving
+        "services" -> R.drawable.rent
+        else -> R.drawable.more
     }
     Icon(
         painter = painterResource(id = iconRes),
         contentDescription = "Transaction Icon: $category",
-        modifier = Modifier.size(54.dp),
+        modifier = Modifier.size(45.dp),
         tint = Color.Unspecified
     )
 }

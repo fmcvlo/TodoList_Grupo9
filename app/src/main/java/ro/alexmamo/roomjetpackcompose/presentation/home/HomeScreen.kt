@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -15,44 +16,52 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import ro.alexmamo.roomjetpackcompose.components.LoadingIndicator
+import ro.alexmamo.roomjetpackcompose.domain.model.Response
 import ro.alexmamo.roomjetpackcompose.presentation.home.components.*
 import ro.alexmamo.roomjetpackcompose.presentation.home.components.Period
+import ro.alexmamo.roomjetpackcompose.presentation.home.mapper.TransactionUiMapper.toUiTransactions
 import ro.alexmamo.roomjetpackcompose.ui.theme.*
 import androidx.compose.ui.tooling.preview.Preview
 
-@Preview
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    viewModel: HomeViewModel = hiltViewModel()
+) {
     var selectedPeriod by remember { mutableStateOf(Period.Monthly) }
+    val transactionsState by viewModel.transactionsState.collectAsState()
 
-    val transactions = remember {
-        listOf(
-            Transaction(
-                title = "Salary",
-                amount = "$4.000,00",
-                category = "saving",
-                date = "18:27 - April 30",
-                iconColor = LightBlueButton,
-                isExpense = false
-            ),
-            Transaction(
-                title = "Groceries",
-                amount = "-$100,00",
-                category = "groceries",
-                date = "17:00 - April 24",
-                iconColor = BlueButton,
-                isExpense = true
-            ),
-            Transaction(
-                title = "Rent",
-                amount = "-$674,40",
-                category = "rent",
-                date = "8:30 - April 15",
-                iconColor = OceanBlue,
-                isExpense = true
+    when (val state = transactionsState) {
+        is Response.Idle -> {}
+        is Response.Loading -> {
+            LoadingIndicator()
+        }
+        is Response.Success -> {
+            val transactions = state.data.toUiTransactions()
+            HomeScreenContent(
+                selectedPeriod = selectedPeriod,
+                transactions = transactions,
+                onPeriodSelected = { selectedPeriod = it }
             )
-        )
+        }
+        is Response.Failure -> {
+            // TODO: Mostrar mensaje de error
+            HomeScreenContent(
+                selectedPeriod = selectedPeriod,
+                transactions = emptyList(),
+                onPeriodSelected = { selectedPeriod = it }
+            )
+        }
     }
+}
+
+@Composable
+private fun HomeScreenContent(
+    selectedPeriod: Period,
+    transactions: List<ro.alexmamo.roomjetpackcompose.presentation.home.components.Transaction>,
+    onPeriodSelected: (Period) -> Unit
+) {
 
     Column(
         modifier = Modifier
@@ -86,17 +95,29 @@ fun HomeScreen() {
 
                 PeriodSwitch(
                     selectedPeriod = selectedPeriod,
-                    onPeriodSelected = { selectedPeriod = it }
+                    onPeriodSelected = onPeriodSelected
                 )
 
                 Spacer(modifier = Modifier.height(6.dp))
 
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(bottom = 100.dp)
-                ) {
-                    items(transactions) { transaction ->
-                        TransactionItem(transaction = transaction)
+                if (transactions.isEmpty()) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = androidx.compose.ui.Alignment.Center
+                    ) {
+                        androidx.compose.material3.Text(
+                            text = "No hay transacciones",
+                            color = DarkText
+                        )
+                    }
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(bottom = 100.dp)
+                    ) {
+                        items(transactions) { transaction ->
+                            TransactionItem(transaction = transaction)
+                        }
                     }
                 }
             }
