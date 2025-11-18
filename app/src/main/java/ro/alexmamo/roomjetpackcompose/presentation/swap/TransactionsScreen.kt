@@ -4,8 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -34,6 +36,7 @@ import ro.alexmamo.roomjetpackcompose.presentation.home.mapper.TransactionUiMapp
 import ro.alexmamo.roomjetpackcompose.ui.theme.MainGreen
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.unit.sp
 import ro.alexmamo.roomjetpackcompose.presentation.swap.components.TransactionsBalance
 
 @Composable
@@ -74,6 +77,7 @@ fun TransactionsScreenContent(
             income = "$9,500.00",
             expense = "-$1,187.40"
         )
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -103,6 +107,33 @@ fun TransactionsScreenContent(
                         modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(bottom = 100.dp)
                     ) {
+                        item {
+                            Text(
+                                text = "April",
+                                fontSize = 12.sp,
+                                color = Color.Gray,
+                                modifier = Modifier
+                                    .padding(bottom = 8.dp)
+                                    .align(Alignment.Start)
+                            )
+                        }
+                        items(transactions) { transaction ->
+                            TransactionItem(transaction = transaction)
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(24.dp))
+                        }
+
+                        item {
+                            Text(
+                                text = "March",
+                                fontSize = 12.sp,
+                                color = Color.Gray,
+                                modifier = Modifier
+                                    .padding(bottom = 8.dp)
+                                    .align(Alignment.Start)
+                            )
+                        }
                         items(transactions) { transaction ->
                             TransactionItem(transaction = transaction)
                         }
@@ -112,6 +143,8 @@ fun TransactionsScreenContent(
         }
     }
 }
+
+
 
 
 
