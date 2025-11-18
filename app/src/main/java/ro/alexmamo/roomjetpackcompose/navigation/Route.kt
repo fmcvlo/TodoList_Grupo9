@@ -34,6 +34,9 @@ object LoginScreen
 object SignUpScreen
 
 @Serializable
+object ForgotPasswordScreen
+
+@Serializable
 data class BookDetails(
     val id: Int,
     val title: String,

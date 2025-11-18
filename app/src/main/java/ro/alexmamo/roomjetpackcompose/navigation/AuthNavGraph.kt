@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import ro.alexmamo.roomjetpackcompose.presentation.launch.LaunchScreen
 import ro.alexmamo.roomjetpackcompose.presentation.login.LoginScreen
 import ro.alexmamo.roomjetpackcompose.presentation.signup.SignUpScreen
+import ro.alexmamo.roomjetpackcompose.presentation.forgotpassword.ForgotPasswordScreen
 
 @Composable
 fun AuthNavGraph(
@@ -20,18 +21,13 @@ fun AuthNavGraph(
         composable<LaunchScreen> {
             LaunchScreen(
                 onLogInClick = {
-                    navController.navigate(LoginScreen) {
-                        // Evitar que se pueda volver a LaunchScreen con el botón back
-                        popUpTo(LaunchScreen) { inclusive = true }
-                    }
+                    navController.navigate(LoginScreen)
                 },
                 onSignUpClick = {
-                    navController.navigate(SignUpScreen) {
-                        popUpTo(LaunchScreen) { inclusive = true }
-                    }
+                    navController.navigate(SignUpScreen)
                 },
                 onForgotPasswordClick = {
-                    // TODO: Navegar a ForgotPasswordScreen cuando se implemente
+                    navController.navigate(ForgotPasswordScreen)
                 }
 
             )
@@ -46,7 +42,10 @@ fun AuthNavGraph(
                     navController.navigate(SignUpScreen)
                 },
                 onNavigateToForgotPassword = {
-                    // TODO: Navegar a ForgotPasswordScreen cuando se implemente
+                    navController.navigate(ForgotPasswordScreen)
+                },
+                onNavigateBack = {
+                    navController.navigateUp()
                 }
             )
         }
@@ -57,9 +56,24 @@ fun AuthNavGraph(
                     onNavigateToAuthenticated()
                 },
                 onNavigateToLogin = {
-                    navController.navigate(LoginScreen) {
-                        popUpTo(SignUpScreen) { inclusive = true }
-                    }
+                    navController.navigate(LoginScreen)
+                },
+                onNavigateBack = {
+                    navController.navigateUp()
+                }
+            )
+        }
+        composable<ForgotPasswordScreen> {
+            ForgotPasswordScreen(
+                onResetPasswordSuccess = {
+                    // Cuando el reset de contraseña sea exitoso, navegar a la pantalla autenticada
+                    onNavigateToAuthenticated()
+                },
+                onNavigateToSignUp = {
+                    navController.navigate(SignUpScreen)
+                },
+                onNavigateBack = {
+                    navController.navigateUp()
                 }
             )
         }

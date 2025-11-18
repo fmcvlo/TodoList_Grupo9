@@ -29,9 +29,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.activity.compose.BackHandler
 import ro.alexmamo.roomjetpackcompose.components.Button
 import ro.alexmamo.roomjetpackcompose.components.ClickableText
 import ro.alexmamo.roomjetpackcompose.components.Input
+import ro.alexmamo.roomjetpackcompose.ui.theme.BlackText
 import ro.alexmamo.roomjetpackcompose.ui.theme.BlueButton
 import ro.alexmamo.roomjetpackcompose.ui.theme.DarkText
 import ro.alexmamo.roomjetpackcompose.ui.theme.LettersAndIcons
@@ -44,8 +46,12 @@ val SubtextColor = Color(0xFF4B4544)
 @Composable
 fun SignUpScreen(
     onSignUpSuccess: () -> Unit = {},
-    onNavigateToLogin: () -> Unit = {}
+    onNavigateToLogin: () -> Unit = {},
+    onNavigateBack: () -> Unit = {}
 ) {
+    BackHandler {
+        onNavigateBack()
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -132,19 +138,25 @@ fun SignUpScreen(
                 placeholder = "Confirm your password"
             )
 
-            Spacer(modifier = Modifier.height(10.dp))
+
 
             Column(
-                modifier = Modifier.fillMaxWidth(),
-
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(0.dp)
             ) {
                 // Terms of Use and Privacy Policy text
                 Text(
+                    text = "By continuing, you agree to",
+                    fontFamily = PoppinsFontFamily,
+                    fontWeight = FontWeight.Normal,
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center,
+                    color = SubtextColor,
+                    lineHeight = 14.sp
+                )
+                Text(
                     text = buildAnnotatedString {
-                        withStyle(style = SpanStyle(color = SubtextColor)) {
-                            append("By continuing, you agree to ")
-                        }
                         withStyle(style = SpanStyle(color = SubtextColor, fontWeight = FontWeight.SemiBold)) {
                             append("Terms of Use")
                         }
@@ -157,12 +169,13 @@ fun SignUpScreen(
                     },
                     fontFamily = PoppinsFontFamily,
                     fontWeight = FontWeight.Normal,
-                    fontSize = 10.sp,
+                    fontSize = 12.sp,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                    color = BlackText,
+                    lineHeight = 14.sp
                 )
 
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 Button(
                     text = "Sign Up",
@@ -175,7 +188,7 @@ fun SignUpScreen(
                     style = "primary"
                 )
 
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // "Already have an account? Log In" text
                 Text(

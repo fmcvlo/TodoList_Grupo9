@@ -18,7 +18,6 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -72,14 +71,14 @@ fun Input(
     )
 
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     ) {
         Text(
             text = label,
             modifier = Modifier.padding(start = 16.dp),
             fontFamily = PoppinsFontFamily,
             fontWeight = FontWeight.Medium,
-            fontSize = 12.sp,
+            fontSize = 15.sp,
             color = LettersAndIcons,
             textAlign = TextAlign.Start
         )
@@ -88,7 +87,8 @@ fun Input(
             value = value,
             onValueChange = onValueChange,
             modifier = Modifier
-                .fillMaxWidth(),
+                .fillMaxWidth()
+                .padding(top = 6.dp),
             enabled = enabled,
             singleLine = singleLine,
             textStyle = inputTextStyle,
@@ -121,7 +121,7 @@ fun Input(
                             Text(
                                 text = placeholder,
                                 fontFamily = PoppinsFontFamily,
-                                fontSize = 11.sp,
+                                fontSize = 16.sp,
                                 color = LettersAndIcons.copy(alpha = 0.6f)
                             )
                         }
