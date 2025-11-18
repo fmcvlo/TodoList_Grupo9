@@ -12,7 +12,7 @@ import ro.alexmamo.roomjetpackcompose.presentation.home.HomeScreen
 import ro.alexmamo.roomjetpackcompose.presentation.profile.ProfileScreen
 import ro.alexmamo.roomjetpackcompose.presentation.settings.SettingsScreen
 import ro.alexmamo.roomjetpackcompose.presentation.analytics.AnalyticsScreen
-import ro.alexmamo.roomjetpackcompose.presentation.swap.SwapScreen
+import ro.alexmamo.roomjetpackcompose.presentation.swap.TransactionsScreen
 import ro.alexmamo.roomjetpackcompose.presentation.layers.LayersScreen
 
 @Composable
@@ -44,7 +44,7 @@ fun NavGraph(
             AnalyticsScreen()
         }
         composable<SwapScreen> {
-            SwapScreen()
+            TransactionsScreen()
         }
         composable<LayersScreen> {
             LayersScreen()
