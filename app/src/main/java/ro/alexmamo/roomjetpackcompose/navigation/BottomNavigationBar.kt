@@ -79,8 +79,6 @@ fun BottomNavigationBar(navController: NavController) {
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val iconSpacing = 33.dp
-
             items.forEachIndexed { index, item ->
                 // Comparar usando el nombre de la ruta
                 val isSelected = currentRoute?.contains(item.routeName, ignoreCase = true) == true
@@ -111,10 +109,6 @@ fun BottomNavigationBar(navController: NavController) {
                         modifier = Modifier.size(28.dp)
                     )
 
-                }
-
-                if (index < items.lastIndex) {
-                    Spacer(modifier = Modifier.width(iconSpacing))
                 }
             }
         }
