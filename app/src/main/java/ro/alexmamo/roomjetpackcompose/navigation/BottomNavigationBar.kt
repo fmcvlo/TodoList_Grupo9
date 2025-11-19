@@ -3,6 +3,7 @@ package ro.alexmamo.roomjetpackcompose.navigation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
@@ -75,11 +76,9 @@ fun BottomNavigationBar(navController: NavController) {
                 .clip(RoundedCornerShape(topStart = 80.dp, topEnd = 80.dp))
                 .background(LightGreen)
                 .padding(top = 36.dp, bottom = 41.dp, start = 30.dp, end = 30.dp),
-            horizontalArrangement = Arrangement.Center,
+            horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            val iconSpacing = 33.dp
-
             items.forEachIndexed { index, item ->
                 // Comparar usando el nombre de la ruta
                 val isSelected = currentRoute?.contains(item.routeName, ignoreCase = true) == true
@@ -91,7 +90,7 @@ fun BottomNavigationBar(navController: NavController) {
                             if (isSelected) BottomNavActiveBackground else Color.Transparent
                         )
                         .clickable {
-                            navController.navigate(item.screen) {
+                            navController.navigate(item.routeName) {
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
@@ -110,10 +109,6 @@ fun BottomNavigationBar(navController: NavController) {
                         modifier = Modifier.size(28.dp)
                     )
 
-                }
-
-                if (index < items.lastIndex) {
-                    Spacer(modifier = Modifier.width(iconSpacing))
                 }
             }
         }
