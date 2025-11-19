@@ -37,6 +37,7 @@ import ro.alexmamo.roomjetpackcompose.ui.theme.MainGreen
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.sp
+import ro.alexmamo.roomjetpackcompose.components.ScreenHeader
 import ro.alexmamo.roomjetpackcompose.presentation.swap.components.TransactionsBalance
 
 @Composable
@@ -72,6 +73,7 @@ fun TransactionsScreenContent(
             .fillMaxSize()
             .background(MainGreen)
     ) {
+        ScreenHeader("Transactions")
         TransactionsBalance(
             balance = "$7,783.00",
             income = "$9,500.00",

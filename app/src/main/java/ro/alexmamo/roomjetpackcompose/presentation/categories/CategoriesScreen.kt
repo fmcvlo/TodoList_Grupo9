@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import ro.alexmamo.roomjetpackcompose.components.ScreenHeader
 import ro.alexmamo.roomjetpackcompose.presentation.home.components.BalanceSection
 import ro.alexmamo.roomjetpackcompose.presentation.home.components.GreetingSection
 import ro.alexmamo.roomjetpackcompose.presentation.home.components.SavingsProgressBar
@@ -37,6 +38,8 @@ fun CategoriesScreen(categories: List<String>) {
             .fillMaxSize()
             .background(MainGreen)
     ) {
+        ScreenHeader("Categories")
+
         GreetingSection()
 
         BalanceSection(
