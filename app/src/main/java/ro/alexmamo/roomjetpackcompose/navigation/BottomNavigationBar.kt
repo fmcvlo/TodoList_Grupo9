@@ -23,43 +23,37 @@ import ro.alexmamo.roomjetpackcompose.ui.theme.DarkGreen
 import ro.alexmamo.roomjetpackcompose.ui.theme.LightGreen
 // Data class para items del bottom nav
 data class BottomNavItem(
-    val screen: Any,
+    val route: Any,
     val title: String,
-    val icon: Int,
-    val routeName: String
+    val icon: Int
 )
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
         BottomNavItem(
-            screen = HomeScreen,
+            route = HomeScreen,
             title = "Inicio",
-            icon = R.drawable.home,
-            routeName = "HomeScreen"
+            icon = R.drawable.home
         ),
         BottomNavItem(
-            screen = AnalyticsScreen,
+            route = AnalyticsScreen,
             title = "Analytics",
-            icon = R.drawable.analysis,
-            routeName = "AnalyticsScreen"
+            icon = R.drawable.analysis
         ),
         BottomNavItem(
-            screen = SwapScreen,
+            route = SwapScreen,
             title = "Swap",
-            icon = R.drawable.transaction,
-            routeName = "SwapScreen"
+            icon = R.drawable.transaction
         ),
         BottomNavItem(
-            screen = LayersScreen,
+            route = LayersScreen,
             title = "Layers",
-            icon = R.drawable.category,
-            routeName = "LayersScreen"
+            icon = R.drawable.category
         ),
         BottomNavItem(
-            screen = ProfileScreen,
+            route = ProfileScreen,
             title = "Perfil",
-            icon = R.drawable.profile,
-            routeName = "ProfileScreen"
+            icon = R.drawable.profile
         )
     )
 
@@ -80,8 +74,9 @@ fun BottomNavigationBar(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             items.forEachIndexed { index, item ->
-                // Comparar usando el nombre de la ruta
-                val isSelected = currentRoute?.contains(item.routeName, ignoreCase = true) == true
+                // Comparar usando la ruta actual - verificar si la ruta actual contiene el nombre de la clase de la ruta
+                val routeClassName = item.route::class.simpleName
+                val isSelected = currentRoute?.contains(routeClassName ?: "", ignoreCase = false) == true
 
                 Box(
                     modifier = Modifier
@@ -90,7 +85,7 @@ fun BottomNavigationBar(navController: NavController) {
                             if (isSelected) BottomNavActiveBackground else Color.Transparent
                         )
                         .clickable {
-                            navController.navigate(item.routeName) {
+                            navController.navigate(item.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
                                     saveState = true
                                 }
