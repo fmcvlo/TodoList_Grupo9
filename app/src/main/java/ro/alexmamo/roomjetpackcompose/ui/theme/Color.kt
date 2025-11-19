@@ -26,3 +26,7 @@ val BackgroundGreenWhite = Color(0xFFF1FFF3)
 val LettersAndIcons = Color(0xFF093030)
 val DarkText = Color(0xFF052224)
 val BlackText = Color(0xFF4B4544)
+
+// Profile Screen Icon Colors
+val ProfileIconBgLightBlue = Color(0xFFEAF2FF)
+val ProfileIconColorBlue = Color(0xFF3299FF)

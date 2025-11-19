@@ -21,12 +21,12 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = HomeScreen
+        startDestination = "HomeScreen"
     ) {
-        composable<HomeScreen> {
+        composable("HomeScreen") {
             HomeScreen()
         }
-        composable<BookListScreen> {
+        composable("BookListScreen") {
             BookListScreen(
                 navigateToBookDetailsScreen = { book ->
                     val bookDetails = book.toBookDetails()
@@ -34,19 +34,19 @@ fun NavGraph(
                 }
             )
         }
-        composable<ProfileScreen> {
+        composable("ProfileScreen") {
             ProfileScreen()
         }
-        composable<SettingsScreen> {
+        composable("SettingsScreen") {
             SettingsScreen()
         }
-        composable<AnalyticsScreen> {
+        composable("AnalyticsScreen") {
             AnalyticsScreen()
         }
-        composable<SwapScreen> {
+        composable("SwapScreen") {
             SwapScreen()
         }
-        composable<LayersScreen> {
+        composable("LayersScreen") {
             LayersScreen()
         }
         composable<BookDetails> { entry ->
