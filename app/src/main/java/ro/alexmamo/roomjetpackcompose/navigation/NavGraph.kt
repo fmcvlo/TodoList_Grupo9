@@ -12,8 +12,8 @@ import ro.alexmamo.roomjetpackcompose.presentation.home.HomeScreen
 import ro.alexmamo.roomjetpackcompose.presentation.profile.ProfileScreen
 import ro.alexmamo.roomjetpackcompose.presentation.settings.SettingsScreen
 import ro.alexmamo.roomjetpackcompose.presentation.analytics.AnalyticsScreen
-import ro.alexmamo.roomjetpackcompose.presentation.swap.SwapScreen
-import ro.alexmamo.roomjetpackcompose.presentation.layers.LayersScreen
+import ro.alexmamo.roomjetpackcompose.presentation.swap.TransactionsScreen
+import ro.alexmamo.roomjetpackcompose.presentation.categories.CategoriesScreen
 
 @Composable
 fun NavGraph(
@@ -21,12 +21,12 @@ fun NavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = "HomeScreen"
+        startDestination = HomeScreen
     ) {
-        composable("HomeScreen") {
+        composable<HomeScreen> {
             HomeScreen()
         }
-        composable("BookListScreen") {
+        composable<BookListScreen> {
             BookListScreen(
                 navigateToBookDetailsScreen = { book ->
                     val bookDetails = book.toBookDetails()
@@ -34,20 +34,31 @@ fun NavGraph(
                 }
             )
         }
-        composable("ProfileScreen") {
+        composable<ProfileScreen> {
             ProfileScreen()
         }
-        composable("SettingsScreen") {
+        composable<SettingsScreen> {
             SettingsScreen()
         }
-        composable("AnalyticsScreen") {
+        composable<AnalyticsScreen> {
             AnalyticsScreen()
         }
-        composable("SwapScreen") {
-            SwapScreen()
+        composable<SwapScreen> {
+            TransactionsScreen()
         }
-        composable("LayersScreen") {
-            LayersScreen()
+        composable<LayersScreen> {
+            val categories = listOf(
+                "food",
+                "transport",
+                "groceries",
+                "rent",
+                "gifts",
+                "medicine",
+                "entertainment",
+                "savings",
+                "more"
+            )
+            CategoriesScreen(categories)
         }
         composable<BookDetails> { entry ->
             val bookDetails = entry.toRoute<BookDetails>()

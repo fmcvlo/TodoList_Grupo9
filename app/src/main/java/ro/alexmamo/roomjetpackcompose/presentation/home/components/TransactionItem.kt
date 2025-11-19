@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ro.alexmamo.roomjetpackcompose.ui.theme.*
@@ -19,7 +20,6 @@ data class Transaction(
     val iconColor: androidx.compose.ui.graphics.Color,
     val isExpense: Boolean = true
 )
-
 @Composable
 fun TransactionItem(
     transaction: Transaction,
