@@ -1,6 +1,6 @@
 [versions]
 glance="1.1.0"
-gradle = "8.13.1"
+gradle = "8.8.1"
 kotlin = "2.0.21"
 
 ksp = "2.0.21-1.0.28"
