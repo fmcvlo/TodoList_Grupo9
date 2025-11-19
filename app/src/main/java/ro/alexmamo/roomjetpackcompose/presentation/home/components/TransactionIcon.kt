@@ -17,7 +17,8 @@ import ro.alexmamo.roomjetpackcompose.R
 
 @Composable
 fun TransactionIcon(
-    category: String
+    category: String,
+    modifier: Modifier = Modifier.size(45.dp) // tamaño por defecto
 ) {
     @DrawableRes val iconRes: Int = when (category.lowercase()) {
         "food" -> R.drawable.trans_food
@@ -34,7 +35,7 @@ fun TransactionIcon(
     Icon(
         painter = painterResource(id = iconRes),
         contentDescription = "Transaction Icon: $category",
-        modifier = Modifier.size(45.dp),
+        modifier = modifier,
         tint = Color.Unspecified
     )
 }

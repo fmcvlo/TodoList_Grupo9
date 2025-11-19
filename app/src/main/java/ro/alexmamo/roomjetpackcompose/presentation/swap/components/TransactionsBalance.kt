@@ -42,9 +42,9 @@ fun TransactionsBalance(
                 .fillMaxWidth()
                 .background(
                     color = Color.White,
-                    shape = RoundedCornerShape(16.dp) // esquinas un poco más pequeñas
+                    shape = RoundedCornerShape(16.dp)
                 )
-                .padding(16.dp) // menos padding interno
+                .padding(16.dp)
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -54,7 +54,7 @@ fun TransactionsBalance(
                     text = "Total Balance",
                     fontFamily = PoppinsFontFamily,
                     fontWeight = FontWeight.Normal,
-                    fontSize = 16.sp, // más pequeño
+                    fontSize = 16.sp,
                     color = LettersAndIcons
                 )
                 Spacer(modifier = Modifier.height(4.dp))
@@ -62,7 +62,7 @@ fun TransactionsBalance(
                     text = balance,
                     fontFamily = PoppinsFontFamily,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp, // más pequeño
+                    fontSize = 24.sp,
                     color = DarkText
                 )
             }

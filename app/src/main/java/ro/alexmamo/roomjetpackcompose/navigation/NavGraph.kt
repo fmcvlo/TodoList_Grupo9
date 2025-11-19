@@ -13,7 +13,7 @@ import ro.alexmamo.roomjetpackcompose.presentation.profile.ProfileScreen
 import ro.alexmamo.roomjetpackcompose.presentation.settings.SettingsScreen
 import ro.alexmamo.roomjetpackcompose.presentation.analytics.AnalyticsScreen
 import ro.alexmamo.roomjetpackcompose.presentation.swap.TransactionsScreen
-import ro.alexmamo.roomjetpackcompose.presentation.layers.LayersScreen
+import ro.alexmamo.roomjetpackcompose.presentation.categories.CategoriesScreen
 
 @Composable
 fun NavGraph(
@@ -47,7 +47,18 @@ fun NavGraph(
             TransactionsScreen()
         }
         composable<LayersScreen> {
-            LayersScreen()
+            val categories = listOf(
+                "food",
+                "transport",
+                "groceries",
+                "rent",
+                "gifts",
+                "medicine",
+                "entertainment",
+                "savings",
+                "more"
+            )
+            CategoriesScreen(categories)
         }
         composable<BookDetails> { entry ->
             val bookDetails = entry.toRoute<BookDetails>()

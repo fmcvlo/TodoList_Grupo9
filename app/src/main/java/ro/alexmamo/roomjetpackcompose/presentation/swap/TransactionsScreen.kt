@@ -110,7 +110,7 @@ fun TransactionsScreenContent(
                         item {
                             Text(
                                 text = "April",
-                                fontSize = 12.sp,
+                                fontSize = 16.sp,
                                 color = Color.Gray,
                                 modifier = Modifier
                                     .padding(bottom = 8.dp)
@@ -127,7 +127,7 @@ fun TransactionsScreenContent(
                         item {
                             Text(
                                 text = "March",
-                                fontSize = 12.sp,
+                                fontSize = 16.sp,
                                 color = Color.Gray,
                                 modifier = Modifier
                                     .padding(bottom = 8.dp)
